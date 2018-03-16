@@ -21,7 +21,7 @@ public class Autors
     public Autors(int id_Autors,String name, List<Stihi> stihi) {
         this.id_Autors = id_Autors;
         this.name = name; 
-        this.stihi = this.stihi;
+        this.stihi = stihi;
     }
     
     // конструктор с 2 параметрами, кидаем пустой ArrayList<> в стихи

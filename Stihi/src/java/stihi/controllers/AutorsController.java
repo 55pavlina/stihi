@@ -4,7 +4,12 @@ import java.util.List;
 import stihi.dal.AutorsDal;
 import stihi.model.Autors;
 
-
+/*
+* Прослойка контроллер взаимодействует с DAL и API.
+* Позволяет работать с полученными объктами модели Autors.java.
+* Смотри StihiController!
+*
+*/
 public class AutorsController 
 {
     protected AutorsDal autorsDal;

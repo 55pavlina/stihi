@@ -1,4 +1,4 @@
-package stihi.dal;
+package stihi.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,41 +8,41 @@ import static org.junit.Assert.*;
 import stihi.model.Stihi;
 
 /*
- * Тестирование класса AutorsDal.java
+ * Тестирование класса AutorsController.java
  */
-public class AutorsDalTest {
+public class AutorsControllerTest {
     
-    public AutorsDalTest() {
+    public AutorsControllerTest() {
     }
     
     /*
-     * Тест SelectAll(), который должен вернуть всех авторов из БД
+     * Тест testGetAllAutors(), который должен вернуть всех авторов из БД
      */
     
     @Test
-    public void testSelectAll() {
+    public void testGetAllAutors() {
         
-        AutorsDal instance = new AutorsDal(); // создание объекта AutorsDal
-         // Создаем лист, куда заносятся результаты функции selectAll(), т.е. объекты класса Autors.java
-        List<Autors> result = instance.selectAll();
+        AutorsController instance = new AutorsController(); // создание объекта AutorsController
+         // Создаем лист, куда заносятся результаты функции getAllAutors(), т.е. объекты класса Autors.java
+        List<Autors> result = instance.getAllAutors();
         // Тест пройден, если результат не равен null и размер листа стал больше 0
         assertTrue(result!=null && result.size()>0);
 
     }
 
-    /*
-     * Тест selectById(id_Autor), который должен автора по id из БД
+     /*
+     * Тест getAutors(id_Autor), который должен автора по id из БД
      */
      @Test
-    public void testSelectById() {       
+    public void testGetAutors() {       
         int id_Autor = 2; // задаем любое id автора
-        AutorsDal instance = new AutorsDal(); // создание объекта AutorsDal
+        AutorsController instance = new AutorsController(); // создание объекта AutorsController
         
          /*
-         * selectById(id_Autor) возвращает объект Autors по id( получает из БД и 
-         * при помощи маппера autors.xml конвертирует в объект класса Autors)
+         * getAutors(id_Autor) возвращает объект Autors по id( получает из БД
+         * при помощи слоя DAL)
          */
-        Autors result = instance.selectById(id_Autor);
+        Autors result = instance.getAutors(id_Autor);
         System.out.println(result.toString()); // вывести результат
         assertTrue(result!=null && result.getid_Autors()==2); // Тест пройден, если результат не равен null и id_Autors() == 2
     }
@@ -56,36 +56,36 @@ public class AutorsDalTest {
      */
     @Test
     public void testInsertUpdateDeleteById() {        
-        AutorsDal dal = new AutorsDal();// создание объекта AutorsDal
+        AutorsController controller = new AutorsController();// создание объекта AutorsController
         
         /**
-         * Тест Insert в таблицу autors
+         * Тест insertAutors() в таблицу autors
          */
         //Создание нового объекта Autors 
         List<Stihi> stihiList = new ArrayList<>(); // заглушка
         Autors autor = new Autors(11,"С. Маршак", stihiList); 
         // Переменная INSERT показывает количество добавленных строк в таблицу autors
-        // dal.insert(X) добавляет в таблицу данные объекта "X"
-        int INSERT =  dal.insert(autor);
+        // controller.insertAutors(X) добавляет в таблицу данные объекта "X"
+        int INSERT =  controller.insertAutors(autor);
         //Проверка на INSERT == 1
         assertTrue(INSERT == 1);
         
         /**
-         * Тест Update в таблицу  autors
+         * Тест updateAutors в таблицу  autors
          */
         autor = new Autors(11,"В. Маяковский", stihiList);  // изменим объект        
         // Переменная UPDATE показывает количество обновленных строк в таблице autors
-        // dal.update(x) обновляет данные в таблице  autors объектом x с id = x.getID()
-        int UPDATE =  dal.update(autor);
+        // controller.updateAutors(x) обновляет данные в таблице  autors объектом x с id = x.getID()
+        int UPDATE =  controller.updateAutors(autor);
         //Проверка на DUPDATE == 1
         assertTrue(UPDATE == 1);
         
         /**
-         * Тест DeleteById в таблице autors
+         * Тест deleteAutors в таблице autors
          */
         // Переменная DELETE показывает количество удаленных строк в таблице autors(в данном случае либо 0, либо 1)
-        // dal.deleteById(x) удаляет из таблицы autors запись с id = x
-        int DELETE =  dal.deleteById(11);
+        // controller.deleteAutors(x) удаляет из таблицы autors запись с id = x
+        int DELETE =  controller.deleteAutors(11);
         //Проверка на DELETE == 1
         assertTrue(DELETE == 1);        
     }     

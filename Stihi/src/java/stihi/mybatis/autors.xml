@@ -8,11 +8,11 @@
     <resultMap id = "result" type = "stihi.model.Autors"> 
         <result property = "id_Autors" column = "id_Autors"/> 
         <result property = "name" column = "name"/> 
-        <collection property="stihi" javaType="List" ofType="stihi.model.Stihi" column="id"  select="selectStihi"/>
+        <collection property="stihi" javaType="List" ofType="stihi.model.Stihi" column="id_Autors"  select="selectStihi"/>
     </resultMap> 
 
     <select id="selectStihi" parameterType="int" resultMap="stihi.result">  
-        select * from stihi where id_Autors = #{id} ;
+        select * from stihi where id_Autors = #{id_Autors} ;
     </select>
 
     <select id = "selectAll" resultMap = "result"> 

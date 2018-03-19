@@ -42,7 +42,7 @@ public class AutorsControllerTest {
          * getAutors(id_Autor) возвращает объект Autors по id( получает из БД
          * при помощи слоя DAL)
          */
-        Autors result = instance.getAutors(id_Autor);
+        Autors result = instance.getAutor(id_Autor);
         System.out.println(result.toString()); // вывести результат
         assertTrue(result!=null && result.getid_Autors()==2); // Тест пройден, если результат не равен null и id_Autors() == 2
     }

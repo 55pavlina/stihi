@@ -24,7 +24,7 @@ public class AutorsController
         return autorsDal.selectAll();
     }
     
-    public Autors getAutors(int id)
+    public Autors getAutor(int id)
     {
         return autorsDal.selectById(id);
     }

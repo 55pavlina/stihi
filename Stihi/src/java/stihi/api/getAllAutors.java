@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package stihi.api;
 
 import java.io.IOException;
@@ -17,10 +12,6 @@ import jsonMappers.JsonAutorsMapper;
 import stihi.controllers.AutorsController;
 import stihi.model.Autors;
 
-/**
- *
- * @author Morris
- */
 @WebServlet(name = "getAllAutors", urlPatterns = {"/getAllAutors"})
 public class getAllAutors extends HttpServlet {
 

@@ -12,7 +12,12 @@ import jsonMappers.JsonAutorsMapper;
 import stihi.controllers.AutorsController;
 import stihi.model.Autors;
 
-@WebServlet(name = "getAllAutors", urlPatterns = {"/getAllAutors"})
+/* Сервлет является интерфейсом Java, реализация которого расширяет
+ * функциональные возможности сервера. Сервлет взаимодействует с клиентами 
+ * посредством принципа запрос-ответ. Есть Get(мало данных посылаешь, много получаешь) и Post запрос (наоборот)
+ */
+
+@WebServlet(name = "getAllAutors", urlPatterns = {"/getAllAutors"}) // если кто-то обращается по ссылке http://localhost:8084/Stihi/getAllAutors, то это обрабатывает сервлет
 public class getAllAutors extends HttpServlet {
 
     /**
@@ -24,15 +29,17 @@ public class getAllAutors extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    // request - принимаемый запрос(вбиваемая ссылка в браузере с GET параметрами), response - ответ сервера на основе полученных get параметров(ниже)
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            
-            AutorsController   autorController = new  AutorsController();           
-           List<Autors>  stihi =  autorController.getAllAutors();
-           String json=JsonAutorsMapper.toJson(stihi);
-           out.println(json);
+        response.setContentType("text/html;charset=UTF-8"); // устанавливает тип контента, который возвращает сервлет и его кодировку
+        try (PrintWriter out = response.getWriter()) //вывод
+        {
+
+            AutorsController autorController = new AutorsController();// создает объект КОНТРОЛЛЕР AutorsController()
+            List<Autors> stihi = autorController.getAllAutors(); // при помощи контроллера записывает в в лист stihi полученные от DAL объекты
+            String json = JsonAutorsMapper.toJson(stihi); // переводит в строковый формат json
+            out.println(json); // выводит строку формата json
         }
     }
 

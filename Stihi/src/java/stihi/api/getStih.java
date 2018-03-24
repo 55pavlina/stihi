@@ -29,7 +29,7 @@ public class getStih extends HttpServlet {
             throws ServletException, IOException {
         
         response.setContentType("text/html;charset=UTF-8");
-        int id = Integer.parseInt(request.getParameter("id"));
+        int id = Integer.parseInt(request.getParameter("id")); // получает гет параметр id
         
         try (PrintWriter out = response.getWriter()) {
            StihiController stihiController = new StihiController();

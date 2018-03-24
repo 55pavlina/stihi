@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import org.codehaus.jackson.map.ObjectMapper;
 import stihi.model.Autors;
 
+// аналогично классу JsonStihiMapper
 
 public class JsonAutorsMapper {
     

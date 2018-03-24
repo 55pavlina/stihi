@@ -6,6 +6,13 @@ import org.apache.ibatis.session.SqlSession;
 
 public class AutorsDal extends BaseDal {
 
+    /* 
+        <класс наследуется от BaseDal, получая возможность создавать sql сессии>
+        Сам класс преобразует данные из БД в объекты класса(модели) при помощи мапперов и библиотеки mybatis(my batis использует чужой connector к БД mysql-connector-java-5.1.23-bin.jar)
+        Мапперы - (как шаблоны) показывают каким образом переводить сущности(связанные строки) из БД в объекты модели.
+        А прослойка DAL уже преобразует, используя мапперы.
+    */
+    
     public AutorsDal() {
         // super() может использоваться в конструкторе для вызова конструктора 
         //родительского класса. Т.е. наследует создание фабрики sql-сессий
@@ -37,7 +44,7 @@ public class AutorsDal extends BaseDal {
     public int deleteById(int id) {
         SqlSession session = sqlSessionFactory.openSession();
         int count = session.delete("autors.deleteById", id);
-        session.commit();
+        session.commit(); // фиксация изменения в БД
         session.close();
         return count;
     }
